@@ -10,10 +10,10 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 WORKDIR /app
 
 COPY src/pom.xml ./
-RUN mvn dependency:resolve
+RUN --mount=type=cache,target=/root/.m2 mvn dependency:resolve
 
 COPY ./src ./
-RUN mvn verify -Pnative
+RUN --mount=type=cache,target=/root/.m2 mvn verify -Pnative
 
 FROM scratch
 COPY --from=base /app/target/native.bin /native.bin
