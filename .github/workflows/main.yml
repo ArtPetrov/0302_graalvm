@@ -33,7 +33,5 @@ jobs:
         with:
           context: .
           push: true
-          network: host
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: JDBC_URL=jdbc:postgresql://localhost:5432/db?user=app&password=pass
